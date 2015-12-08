@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="A simple DES, GOST28147 implementation using Django">
+  <meta name="author" content="Stoliarov Vladislav">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Столяров Владислав. Группа БПЗ1201. КР.</title>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="/static/index.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Переключить</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/cipher">anyCipherv2</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/cipher">Главная</a></li>
+          <li><a href="/cipher/des">DES</a></li>
+          <li><a href="/cipher/gost">ГОСТ 28147-89</a></li>
+          <li><a href="/cipher/rsa">RSA</a></li>
+          <li><a href="/cipher/hash">Hash</a></li>
+          <li><a href="/cipher/sign">ЭЦП</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--/.navbar-collapse -->
+  </nav>
+
+  <div class="container">
+    <div style="text-align:center;">
+      <h1>ГОСТ-28147/89</h1>
+      <h2>Отечественный стандарт симметричного шифрования.</h2>
+      <p class="lead">Для начала работы введите текст и ключ.</p>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="comment">Исходный текст:</label>
+        <input form="gost_form" class="form-control" rows="6" name="question" placeholder="{% if question %}{{ question }}{% else %}текст (8 символов){% endif %}" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="comment">Ключ:</label>
+        <input form="gost_form" type="text" class="form-control" placeholder="{% if key %}{{ key }}{% else %}ключ (32 символа){% endif %}" id="key" name="key" required>
+      </div>
+    </div>
+    <div class="container">
+
+      <div class="form-group col-md-12">
+        <label for="comment">Результат:</label>
+        <textarea class="form-control" disabled rows="7">{% if answer %}{{ answer }}{% endif %}</textarea>
+      </div>
+    </div>
+    <div class="container centered">
+      <form action="/cipher/gost/" method="post" id="gost_form">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-lg btn-primary">
+      </form>
+    </div>
+    <br>
+  </div>
+
+  <!-- /.container -->
+
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">Столяров Владислав. Группа БПЗ1201. КР.</p>
+    </div>
+  </footer>
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</body>
+
+</html>
