@@ -1,6 +1,7 @@
 # Specific files #
 ##################
 /mysite/settings.py
+/mysite/mysite/settings.py
 /db.sqlite3
 
 # Byte-compiled / optimized / DLL files
